@@ -1,0 +1,68 @@
+# Crear una clase Libro con atributos privados y métodos getter y setter
+class Libro:
+    def __init__(self, titulo, autor, isbn):
+        self._titulo = titulo
+        self._autor = autor
+        self._isbn = isbn
+
+    def get_titulo(self):
+        return self._titulo
+
+    def set_titulo(self, nuevo_titulo):
+        self._titulo = nuevo_titulo
+
+    def get_autor(self):
+        return self._autor
+
+    def set_autor(self, nuevo_autor):
+        self._autor = nuevo_autor
+
+    def get_isbn(self):
+        return self._isbn
+
+    def set_isbn(self, nuevo_isbn):
+        self._isbn = nuevo_isbn
+
+# Modificar la clase Autor para que pueda tener una lista de libros y un método para agregar libros
+class Autor:
+    def __init__(self, nombre, nacionalidad):
+        self._nombre = nombre
+        self._nacionalidad = nacionalidad
+        self._libros = []  # Lista de libros escritos por el autor
+
+    def agregar_libro(self, libro):
+        if isinstance(libro, Libro):
+            self._libros.append(libro)
+        else:
+            raise ValueError("El objeto debe ser una instancia de la clase Libro")
+
+    def get_libros(self):
+        return self._libros
+
+    def set_libros(self, nueva_lista_libros):
+        if all(isinstance(libro, Libro) for libro in nueva_lista_libros):
+            self._libros = nueva_lista_libros
+        else:
+            raise ValueError("Todos los elementos deben ser instancias de la clase Libro")
+
+    # Métodos getter y setter para nombre con decoradores @property
+    @property
+    def nombre(self):
+        return self._nombre
+
+    @nombre.setter
+    def nombre(self, nuevo_nombre):
+        self._nombre = nuevo_nombre
+
+    # Métodos getter y setter para nacionalidad con decoradores @property
+    @property
+    def nacionalidad(self):
+        return self._nacionalidad
+
+    @nacionalidad.setter
+    def nacionalidad(self, nueva_nacionalidad):
+        self._nacionalidad = nueva_nacionalidad
+
+    #Implementar un método que devuelva una lista de los títulos de los libros escritos por el autor
+    def obtener_titulos_libros(self):
+        return [libro.get_titulo() for libro in self._libros]
