@@ -1,0 +1,33 @@
+# Desafío 2: Modificar la clase Autor para que pueda tener una lista de libros y un método para agregar libros
+class Autor:
+    def __init__(self, nombre, nacionalidad):
+        self._nombre = nombre
+        self._nacionalidad = nacionalidad
+        self._libros = []  # Lista de libros escritos por el autor
+
+    def agregar_libro(self, libro):
+        if isinstance(libro, Libro):
+            self._libros.append(libro)
+        else:
+            raise ValueError("El objeto debe ser una instancia de la clase Libro")
+
+    def get_libros(self):
+        return self._libros
+
+    def set_libros(self, nueva_lista_libros):
+        if all(isinstance(libro, Libro) for libro in nueva_lista_libros):
+            self._libros = nueva_lista_libros
+        else:
+            raise ValueError("Todos los elementos deben ser instancias de la clase Libro")
+
+    def get_nombre(self):
+        return self._nombre
+
+    def set_nombre(self, nuevo_nombre):
+        self._nombre = nuevo_nombre
+
+    def get_nacionalidad(self):
+        return self._nacionalidad
+
+    def set_nacionalidad(self, nueva_nacionalidad):
+        self._nacionalidad = nueva_nacionalidad
